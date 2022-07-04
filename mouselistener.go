@@ -52,12 +52,12 @@ func UpdateListeners(e MouseEvent) bool {
 		}
 	}
 
-	for _, l := range Listeners {
+	/*for _, l := range Listeners {
 		if l.IsHovered(e) {
 			l.Update(e)
 			return true
 		}
-	}
+	}*/
 
 	return false
 }
