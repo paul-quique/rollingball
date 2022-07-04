@@ -47,7 +47,6 @@ func UpdateListeners(e MouseEvent) bool {
 	for _, l := range Listeners {
 		if l.IsFocused() {
 			l.Update(e)
-			fmt.Printf("%v\n", l)
 			return true
 		}
 	}
@@ -55,6 +54,7 @@ func UpdateListeners(e MouseEvent) bool {
 	for _, l := range Listeners {
 		if l.IsHovered(e) {
 			l.Update(e)
+			fmt.Printf("%v\n", l)
 			return true
 		}
 	}
