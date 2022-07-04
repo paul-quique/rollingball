@@ -1,5 +1,7 @@
 package rollingball
 
+import "fmt"
+
 const (
 	MousePressed = iota
 	MouseReleased
@@ -44,6 +46,7 @@ func UpdateListeners(e MouseEvent) bool {
 	for _, l := range Listeners {
 		if l.IsFocused() {
 			l.Update(e)
+			fmt.Println("focused")
 			return true
 		}
 	}
@@ -51,6 +54,7 @@ func UpdateListeners(e MouseEvent) bool {
 	for _, l := range Listeners {
 		if l.IsHovered(e) {
 			l.Update(e)
+			fmt.Println("hovered")
 			return true
 		}
 	}
