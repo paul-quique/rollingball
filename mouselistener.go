@@ -5,6 +5,7 @@ import "fmt"
 const (
 	MousePressed = iota
 	MouseReleased
+	MouseMoved
 )
 
 var Listeners map[string]MouseListener = map[string]MouseListener{}
