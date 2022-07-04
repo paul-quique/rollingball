@@ -1,6 +1,10 @@
 package rollingball
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"fmt"
+
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 //EditablePoint can be moved by the user
 type EditablePoint struct {
@@ -37,6 +41,7 @@ func (p EditablePoint) Update(e MouseEvent) {
 		}
 	} else if e.Type == MousePressed {
 		//else set the point to moving
+		fmt.Println("on met focused à true")
 		p.Focused = true
 	} else {
 		ebiten.SetCursorShape(ebiten.CursorShapePointer)
