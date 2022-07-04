@@ -5,7 +5,7 @@ const (
 	MouseReleased
 )
 
-var Listeners map[string]MouseListener
+var Listeners map[string]MouseListener = map[string]MouseListener{}
 
 //Clickable should be implemented by any clickable ebiten item
 type MouseListener interface {
