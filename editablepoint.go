@@ -2,13 +2,14 @@ package rollingball
 
 //EditablePoint can be moved by the user
 type EditablePoint struct {
+	UUID    string
 	Pt      *Point
 	Focused bool
 	Radius  float64
 }
 
 //IsHovered returns true if the point is hovered
-func (p EditablePoint) IsHovered(e ClickEvent) bool {
+func (p EditablePoint) IsHovered(e MouseEvent) bool {
 	if Dist(p.Pt, e.Location) <= p.Radius {
 		return true
 	} else {
@@ -22,7 +23,7 @@ func (p EditablePoint) IsFocused() bool {
 }
 
 //Update updates the point coordinates and focus state
-func (p EditablePoint) Update(e ClickEvent) {
+func (p EditablePoint) Update(e MouseEvent) {
 	//check if the point is already beeing moved
 	if p.Focused {
 		// if the mouse is released then move the point
@@ -35,4 +36,9 @@ func (p EditablePoint) Update(e ClickEvent) {
 		//else set the point to moving
 		p.Focused = true
 	}
+}
+
+//ID returns the point's ID
+func (p EditablePoint) ID() string {
+	return p.UUID
 }
