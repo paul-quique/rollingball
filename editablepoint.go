@@ -8,15 +8,15 @@ import (
 
 //EditablePoint can be moved by the user
 type EditablePoint struct {
-	UUID    string
+	UUID    string //immutable
 	Pt      *Point
-	Focused bool
-	Radius  float64
+	Focused *bool
+	Radius  *float64
 }
 
 //IsHovered returns true if the point is hovered
 func (p EditablePoint) IsHovered(e MouseEvent) bool {
-	if Dist(p.Pt, e.Location) <= p.Radius {
+	if Dist(p.Pt, e.Location) <= *p.Radius {
 		return true
 	} else {
 		return false
@@ -25,7 +25,7 @@ func (p EditablePoint) IsHovered(e MouseEvent) bool {
 
 //IsFocused returns true if the point is focused
 func (p EditablePoint) IsFocused() bool {
-	return p.Focused
+	return *p.Focused
 }
 
 //Update updates the point coordinates and focus state
@@ -34,10 +34,10 @@ func (p EditablePoint) Update(e MouseEvent) {
 	if e.Type == MouseReleased {
 		p.Pt.MoveTo(e.Location.X, e.Location.Y)
 		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
-		p.Focused = false
+		*p.Focused = false
 		fmt.Printf("MouseReleased, Focused: %v\n", p.Focused)
 	} else if e.Type == MousePressed {
-		p.Focused = true
+		*p.Focused = true
 		fmt.Printf("MousePressed, Focused: %v\n", p.Focused)
 	}
 }
