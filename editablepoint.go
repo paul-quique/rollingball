@@ -31,21 +31,13 @@ func (p EditablePoint) IsFocused() bool {
 //Update updates the point coordinates and focus state
 func (p EditablePoint) Update(e MouseEvent) {
 	//check if the point is already beeing moved
-	if p.Focused {
-		// if the mouse is released then move the point
-		//to the new location
-		if e.Type == MouseReleased {
-			fmt.Println("mouse relachee")
-			p.Pt.MoveTo(e.Location.X, e.Location.Y)
-			ebiten.SetCursorShape(ebiten.CursorShapeDefault)
-			p.Focused = false
-		}
+	if e.Type == MouseReleased {
+		fmt.Println("mouse relachee")
+		p.Pt.MoveTo(e.Location.X, e.Location.Y)
+		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
+		p.Focused = false
 	} else if e.Type == MousePressed {
-		//else set the point to moving
-		fmt.Println("on met focused à true")
 		p.Focused = true
-	} else {
-		ebiten.SetCursorShape(ebiten.CursorShapePointer)
 	}
 }
 
