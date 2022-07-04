@@ -35,6 +35,7 @@ func (p EditablePoint) Update(e MouseEvent) {
 		// if the mouse is released then move the point
 		//to the new location
 		if e.Type == MouseReleased {
+			fmt.Println("mouse relachee")
 			p.Pt.MoveTo(e.Location.X, e.Location.Y)
 			ebiten.SetCursorShape(ebiten.CursorShapeDefault)
 			p.Focused = false
