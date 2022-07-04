@@ -1,8 +1,6 @@
 package rollingball
 
 import (
-	"fmt"
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -32,14 +30,11 @@ func (p EditablePoint) IsFocused() bool {
 func (p EditablePoint) Update(e MouseEvent) {
 	//check if the point is already beeing moved
 	if e.Type == MouseReleased {
-		p.Pt.MoveTo(e.Location.X, e.Location.Y)
-		fmt.Printf("Pt: %v", *p.Pt)
 		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
 		*p.Focused = false
-		fmt.Printf("MouseReleased, Focused: %v\n", p.Focused)
 	} else if e.Type == MousePressed {
 		*p.Focused = true
-		fmt.Printf("MousePressed, Focused: %v\n", p.Focused)
+		p.Pt.MoveTo(e.Location.X, e.Location.Y)
 	}
 }
 
