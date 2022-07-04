@@ -37,6 +37,7 @@ func (p EditablePoint) Update(e MouseEvent) {
 		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
 		p.Focused = false
 	} else if e.Type == MousePressed {
+		p.Pt.MoveTo(e.Location.X, e.Location.Y)
 		p.Focused = true
 	}
 }
