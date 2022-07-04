@@ -46,6 +46,7 @@ func RemoveMouseListener(id string) {
 func UpdateListeners(e MouseEvent) bool {
 	for _, l := range Listeners {
 		if l.IsFocused() {
+			fmt.Printf("listener: %v", l)
 			l.Update(e)
 			fmt.Println("focused")
 			return true
