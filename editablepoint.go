@@ -33,6 +33,7 @@ func (p EditablePoint) Update(e MouseEvent) {
 	//check if the point is already beeing moved
 	if e.Type == MouseReleased {
 		p.Pt.MoveTo(e.Location.X, e.Location.Y)
+		fmt.Printf("Pt: %v", *p.Pt)
 		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
 		*p.Focused = false
 		fmt.Printf("MouseReleased, Focused: %v\n", p.Focused)
