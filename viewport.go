@@ -22,10 +22,15 @@ func (v *Viewport) SetZoom(zX, zY float64) {
 func (v *Viewport) MultiplyZoom(zX, zY float64) {
 	v.ZoomFactorX *= zX
 	v.ZoomFactorY *= zY
-	v.MinX *= zX
-	v.MinY *= zY
-	v.MaxX *= zX
-	v.MaxY *= zY
+
+	dx := dist(v.MinX, v.MaxX) * 0.5 * (v.ZoomFactorX - 1)
+	dy := dist(v.MinY, v.MaxY) * 0.5 * (v.ZoomFactorX - 1)
+
+	v.MinX -= dx
+	v.MaxX += dx
+	v.MinY -= dy
+	v.MaxY += dy
+
 }
 
 func (v *Viewport) MoveX(dx float64) {
@@ -47,4 +52,16 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 	v.MaxY = y2
 	v.ZoomFactorX = (x2 - x1) / v.Width
 	v.ZoomFactorY = (y2 - y1) / v.Height
+}
+
+func dist(a, b float64) float64 {
+	return abs(b - a)
+}
+
+func abs(a float64) float64 {
+	if a > 0 {
+		return a
+	} else {
+		return -a
+	}
 }
