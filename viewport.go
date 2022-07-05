@@ -23,8 +23,8 @@ func (v *Viewport) MultiplyZoom(zX, zY float64) {
 	v.ZoomFactorX *= zX
 	v.ZoomFactorY *= zY
 
-	dx := dist(v.MinX, v.MaxX) * 0.5 * (v.ZoomFactorX - 1)
-	dy := dist(v.MinY, v.MaxY) * 0.5 * (v.ZoomFactorX - 1)
+	dx := dist(v.MinX, v.MaxX) * 0.5 * (zX - 1)
+	dy := dist(v.MinY, v.MaxY) * 0.5 * (zY - 1)
 
 	v.MinX += dx
 	v.MaxX -= dx
