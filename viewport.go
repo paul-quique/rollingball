@@ -8,11 +8,6 @@ type Viewport struct {
 	ZoomFactorY            float64
 }
 
-//GetZoom returns the zoom values for the viewport
-func (v *Viewport) GetZoom() (zX float64, zY float64) {
-	return v.ZoomFactorX, v.ZoomFactorY
-}
-
 //SetZoom sets the zoom values for the viewport
 func (v *Viewport) SetZoom(zX, zY float64) {
 	v.ZoomFactorX, v.ZoomFactorY = zX, zY
@@ -23,14 +18,10 @@ func (v *Viewport) MultiplyZoom(zX, zY float64) {
 	v.ZoomFactorX *= zX
 	v.ZoomFactorY *= zY
 
-	dx := dist(v.MinX, v.MaxX) * 0.5 * (zX - 1)
-	dy := dist(v.MinY, v.MaxY) * 0.5 * (zY - 1)
-
-	v.MinX += dx
-	v.MaxX -= dx
-	v.MinY += dy
-	v.MaxY -= dy
-
+	v.MinX = v.Width * v.ZoomFactorX * 0.125
+	v.MaxX = v.Width * v.ZoomFactorX * 0.375
+	v.MinY = v.ZoomFactorX * v.Height * 0.125
+	v.MaxY = v.ZoomFactorX * v.Height * 0.375
 }
 
 func (v *Viewport) MoveX(dx float64) {
