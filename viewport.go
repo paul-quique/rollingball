@@ -2,6 +2,7 @@ package rollingball
 
 //Viewport stores the area to render
 type Viewport struct {
+	OffsetX, OffsetY       float64
 	MinX, MinY, MaxX, MaxY float64
 	Width, Height          float64
 	ZoomFactorX            float64
@@ -18,16 +19,15 @@ func (v *Viewport) MultiplyZoom(zX, zY float64) {
 	v.ZoomFactorX *= zX
 	v.ZoomFactorY *= zY
 
-	v.MinX = v.MinX/2 - v.MinX*(1./(2*v.ZoomFactorX))
-	v.MaxX = v.MaxX/2 + v.MaxX*(1./(2*v.ZoomFactorX))
+	v.MinX = v.Width/2 - v.Width*(1./(2*v.ZoomFactorX)) + v.OffsetX*v.ZoomFactorX
+	v.MaxX = v.Width/2 + v.Width*(1./(2*v.ZoomFactorX)) + v.OffsetX*v.ZoomFactorX
 	v.MinY = v.Height/2 - v.Width*(1./(2*v.ZoomFactorY))
 	v.MaxY = v.Height/2 + v.Width*(1./(2*v.ZoomFactorY))
 }
 
 func (v *Viewport) MoveX(dx float64) {
 	//zoom factor does not change
-	v.MinX += dx * v.ZoomFactorX
-	v.MaxX += dx * v.ZoomFactorX
+	v.OffsetX += dx
 }
 
 func (v *Viewport) MoveY(dy float64) {
