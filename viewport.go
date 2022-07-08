@@ -47,16 +47,16 @@ func (v *Viewport) MoveY(dy float64) {
 //Update updates the viewport if certain keys are pressed
 func (v *Viewport) Update() {
 	if ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
-		v.MoveX(-1)
-	}
-	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
 		v.MoveX(1)
 	}
+	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
+		v.MoveX(-1)
+	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowUp) {
-		v.MoveY(1)
+		v.MoveY(-1)
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
-		v.MoveY(-1)
+		v.MoveY(1)
 	}
 	if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
 		v.MultiplyZoom(1.25, 1.25)
