@@ -66,7 +66,7 @@ func (v *Viewport) Update() {
 		v.MultiplyZoom(0.8, 0.8)
 	}
 
-	if inpututil.IsKeyJustReleased(ebiten.KeySpace) && inpututil.IsKeyJustReleased(ebiten.KeyBackspace) {
+	if ebiten.IsKeyPressed(ebiten.KeySpace) && ebiten.IsKeyPressed(ebiten.KeyBackspace) {
 		v.SetZoom(1, 1)
 	}
 }
