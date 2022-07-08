@@ -45,6 +45,10 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 	v.ZoomFactorY = (y2 - y1) / v.Height
 }
 
+func (v *Viewport) GetMinPosX() float64 {
+	return v.MinX + v.OffsetX*v.ZoomFactorX
+}
+
 func dist(a, b float64) float64 {
 	return abs(b - a)
 }
