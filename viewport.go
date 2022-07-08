@@ -84,7 +84,7 @@ func (v *Viewport) GetMinPosY() float64 {
 //GetMousePosition computes and returns the mouse position in the game
 func (v *Viewport) GetMousePosition() (x, y float64) {
 	cx, cy := ebiten.CursorPosition()
-	return float64(cx) + v.GetMinPosX(), float64(cy) + v.GetMinPosY()
+	return (float64(cx) + v.GetMinPosX()) * v.ZoomFactorX, (float64(cy) + v.GetMinPosY()) * v.ZoomFactorY
 }
 
 func dist(a, b float64) float64 {
