@@ -1,5 +1,10 @@
 package rollingball
 
+import (
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
+)
+
 //Viewport stores the area to render
 type Viewport struct {
 	OffsetX, OffsetY       float64
@@ -42,6 +47,24 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 	v.ZoomFactorY = (y2 - y1) / v.Height
 }
 
+func (v *Viewport) Update() {
+	if inpututil.IsKeyJustReleased(ebiten.KeyArrowLeft) {
+		v.MoveX(10)
+	}
+	if inpututil.IsKeyJustReleased(ebiten.KeyArrowUp) {
+		v.MoveY(10)
+	}
+	if inpututil.IsKeyJustReleased(ebiten.KeyArrowDown) {
+		v.MoveY(-10)
+	}
+	if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
+		v.MultiplyZoom(1.25, 1.25)
+	}
+
+	if inpututil.IsKeyJustReleased(ebiten.KeyBackspace) {
+		v.MultiplyZoom(0.8, 0.8)
+	}
+}
 func (v *Viewport) GetMinPosX() float64 {
 	return v.MinX + v.OffsetX
 }
