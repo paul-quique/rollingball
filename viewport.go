@@ -32,7 +32,7 @@ func (v *Viewport) MoveX(dx float64) {
 
 func (v *Viewport) MoveY(dy float64) {
 	//zoom factor does not change
-	v.OffsetX += dy
+	v.OffsetY += dy
 }
 
 func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
