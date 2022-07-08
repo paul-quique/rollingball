@@ -32,8 +32,7 @@ func (v *Viewport) MoveX(dx float64) {
 
 func (v *Viewport) MoveY(dy float64) {
 	//zoom factor does not change
-	v.MinY += dy * v.ZoomFactorY
-	v.MaxY += dy * v.ZoomFactorY
+	v.OffsetX += dy
 }
 
 func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
@@ -47,6 +46,10 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 
 func (v *Viewport) GetMinPosX() float64 {
 	return v.MinX + v.OffsetX
+}
+
+func (v *Viewport) GetMinPosY() float64 {
+	return v.MinY + v.OffsetY
 }
 
 func dist(a, b float64) float64 {
