@@ -46,7 +46,7 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 }
 
 func (v *Viewport) GetMinPosX() float64 {
-	return v.MinX + v.OffsetX*v.ZoomFactorX
+	return v.MinX + v.OffsetX
 }
 
 func dist(a, b float64) float64 {
