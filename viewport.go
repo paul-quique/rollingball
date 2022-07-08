@@ -47,7 +47,7 @@ func (v *Viewport) GetMinPosX() float64 {
 }
 
 func (v *Viewport) GetMinPosY() float64 {
-	return v.MinY - v.OffsetY
+	return v.MinY + v.OffsetY
 }
 
 func dist(a, b float64) float64 {
