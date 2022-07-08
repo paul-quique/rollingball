@@ -60,7 +60,7 @@ func (v *Viewport) Update() {
 	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
 		v.MoveY(-1)
 	}
-	if ebiten.IsKeyPressed(ebiten.KeySpace) {
+	if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
 		v.MultiplyZoom(1.25, 1.25)
 	}
 
