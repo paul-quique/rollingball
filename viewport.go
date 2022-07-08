@@ -48,16 +48,19 @@ func (v *Viewport) SetBounds(x1, y1, x2, y2 float64) {
 }
 
 func (v *Viewport) Update() {
-	if inpututil.IsKeyJustReleased(ebiten.KeyArrowLeft) {
-		v.MoveX(10)
+	if ebiten.IsKeyPressed(ebiten.KeyArrowRight) {
+		v.MoveX(-1)
 	}
-	if inpututil.IsKeyJustReleased(ebiten.KeyArrowUp) {
-		v.MoveY(10)
+	if ebiten.IsKeyPressed(ebiten.KeyArrowLeft) {
+		v.MoveX(1)
 	}
-	if inpututil.IsKeyJustReleased(ebiten.KeyArrowDown) {
-		v.MoveY(-10)
+	if ebiten.IsKeyPressed(ebiten.KeyArrowUp) {
+		v.MoveY(1)
 	}
-	if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
+	if ebiten.IsKeyPressed(ebiten.KeyArrowDown) {
+		v.MoveY(-1)
+	}
+	if ebiten.IsKeyPressed(ebiten.KeySpace) {
 		v.MultiplyZoom(1.25, 1.25)
 	}
 
