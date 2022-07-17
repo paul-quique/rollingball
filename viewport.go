@@ -30,8 +30,8 @@ func (v *Viewport) MultiplyZoom(zX, zY float64) {
 
 	v.MinX = v.Width/2 - v.Width*(1./(2*v.ZoomFactorX))
 	v.MaxX = v.Width/2 + v.Width*(1./(2*v.ZoomFactorX))
-	v.MinY = v.Height/2 - v.Width*(1./(2*v.ZoomFactorY))
-	v.MaxY = v.Height/2 + v.Width*(1./(2*v.ZoomFactorY))
+	v.MinY = v.Height/2 + v.Width*(1./(2*v.ZoomFactorY))
+	v.MaxY = v.Height/2 - v.Width*(1./(2*v.ZoomFactorY))
 }
 
 //MoveX moves the viewport along the x-axis
