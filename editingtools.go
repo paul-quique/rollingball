@@ -1,5 +1,7 @@
 package rollingball
 
+import "fmt"
+
 var (
 	CurrentTool int
 	Points      []EditablePoint
@@ -11,9 +13,9 @@ var (
 const EditablePointRadius = 10
 
 const (
-	LineTool int = iota
+	CubicBezierTool int = iota
 	ArcTool
-	CubicBezierTool
+	LineTool
 	EraseTool
 )
 
@@ -50,6 +52,7 @@ func UpdateEditor(px, py float64) {
 			Points = []EditablePoint{}
 		}
 	case CubicBezierTool:
+		fmt.Print("c")
 		isFocused := false
 		cp := EditablePoint{
 			UUID:    RandomID(),
