@@ -9,12 +9,12 @@ type EditablePoint struct {
 	UUID    string //immutable
 	Pt      *Point
 	Focused *bool
-	Radius  *float64
+	Radius  float64
 }
 
 //IsHovered returns true if the point is hovered
 func (p EditablePoint) IsHovered(e MouseEvent) bool {
-	if Dist(p.Pt, e.Location) <= *p.Radius {
+	if Dist(p.Pt, e.Location) <= p.Radius {
 		return true
 	} else {
 		return false
