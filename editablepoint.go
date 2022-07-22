@@ -8,13 +8,13 @@ import (
 type EditablePoint struct {
 	UUID    string //immutable
 	Pt      *Point
-	Focused bool
-	Radius  float64
+	Focused *bool
+	Radius  *float64
 }
 
 //IsHovered returns true if the point is hovered
-func (p *EditablePoint) IsHovered(e MouseEvent) bool {
-	if Dist(p.Pt, e.Location) <= p.Radius {
+func (p EditablePoint) IsHovered(e MouseEvent) bool {
+	if Dist(p.Pt, e.Location) <= *p.Radius {
 		return true
 	} else {
 		return false
@@ -22,18 +22,18 @@ func (p *EditablePoint) IsHovered(e MouseEvent) bool {
 }
 
 //IsFocused returns true if the point is focused
-func (p *EditablePoint) IsFocused() bool {
-	return p.Focused
+func (p EditablePoint) IsFocused() bool {
+	return *p.Focused
 }
 
 //Update updates the point coordinates and focus state
-func (p *EditablePoint) Update(e MouseEvent) {
+func (p EditablePoint) Update(e MouseEvent) {
 	//check if the point is already beeing moved
 	if e.Type == MouseReleased {
 		ebiten.SetCursorShape(ebiten.CursorShapeDefault)
-		p.Focused = false
+		*p.Focused = false
 	} else if e.Type == MousePressed {
-		p.Focused = true
+		*p.Focused = true
 		p.Pt.MoveTo(e.Location.X, e.Location.Y)
 	} else {
 		ebiten.SetCursorShape(ebiten.CursorShapePointer)
@@ -41,6 +41,6 @@ func (p *EditablePoint) Update(e MouseEvent) {
 }
 
 //ID returns the point's ID
-func (p *EditablePoint) ID() string {
+func (p EditablePoint) ID() string {
 	return p.UUID
 }
