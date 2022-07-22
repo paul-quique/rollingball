@@ -7,12 +7,18 @@ type Point struct {
 
 //Line represents a line between point A and point B
 type Line struct {
-	A, B *Point
+	A, B *EditablePoint
 }
 
 //CubicBezier represents a cubic Bezier curve
 type CubicBezier struct {
-	A, B, C, D *Point
+	A, B, C, D *EditablePoint
+}
+
+//Arc represents an arc
+type Arc struct {
+	Center *EditablePoint
+	A, B   *EditablePoint
 }
 
 //MoveTo moves the point to the given coordinates
